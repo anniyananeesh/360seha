@@ -1,0 +1,32 @@
+.weekDays {
+    display: block;
+    position: relative;
+    margin: 0px;
+}
+
+.weekDays a
+{
+    padding: 8px 12px 8px 12px;
+    border-width: 1px;
+    border-style: solid;
+    color: #059BCA;
+    text-decoration: none;
+}
+
+.weekDays a:hover
+{
+    background-color: #059BCA !important;
+	border-style: #059BCA solid !important;
+	border-width: 1px 1px 1px 1px !important;
+    text-decoration: none !important;
+	color: #fff !important;
+}
+
+.weekDays .selectedDay
+{
+    background-color: #059BCA !important;
+    border-style: solid !important;
+	border-width: 1px 1px 1px 1px !important;
+	border-color: gray !important;
+	color: #fff !important;
+}

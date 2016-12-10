@@ -1,0 +1,81 @@
+/*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	Media Responsive Queries starts here
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
+
+/*Mobile devices portrait and landscape modes*/
+/*>= 320px AND <= 480px*/
+@media screen and (min-width: 320px) and (max-width: 960px) 
+{
+
+	.container
+	{
+		width: auto!important;
+    	padding: 0px 10px 10px 10px;
+	}
+
+	.BannerTop
+	{
+		width: 100%!important;
+		height: auto!important;
+		margin-top: 0px!important;
+		max-width: 728px!important;
+	}
+
+	.BannerTop img
+	{
+		width: 100%!important;
+		max-width: 100%!important;
+	}
+
+	.top-header 
+	{
+	    margin-top: 85px!important;
+	    text-align: center;
+	}
+
+	.top-header img
+	{
+		width: 200px!important;
+	}
+
+	.stores-sm, .stores-sm p, .social-media-sm, .social-media-sm p
+	{
+		width: 100%!important;
+	    text-align: center!important;
+	    vertical-align: top;
+	    position: relative;
+	    display: block;
+	}
+
+	.social-media-sm
+	{
+		margin-top: 22px;
+	}
+
+	.content
+	{
+		width: 100%!important;
+		text-align: center;
+	}
+
+	.content a
+	{
+		display: inline-block;
+	}
+
+	.bottom-footer 
+	{
+	    display: block!important;
+	    position: relative!important;
+	    width: 100%!important;
+	    height: auto!important; 
+	    margin-top: 45px!important;
+	    bottom: auto!important;
+	}
+
+	.footer
+	{
+	    margin-top: 12px!important;
+	}
+
+}

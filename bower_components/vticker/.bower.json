@@ -1,0 +1,35 @@
+{
+  "name": "vticker",
+  "homepage": "https://github.com/vikrant2mahajan/vticker",
+  "authors": [
+    "Vikrant Mahajan"
+  ],
+  "description": "vTicker for jquery and angular bindings",
+  "main": [
+    "jquery.vticker.js",
+    "angular.vticker.js"
+  ],
+  "keywords": [
+    "angular",
+    "vticker",
+    "jquery"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "_release": "bdf39b3232",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "bdf39b3232c0d1fd91b2b8d8d643dc699114e677"
+  },
+  "_source": "https://github.com/vikrant2mahajan/vticker.git",
+  "_target": "*",
+  "_originalSource": "vticker",
+  "_direct": true
+}

@@ -1,0 +1,4 @@
+[15-Feb-2015 06:24:54 America/Chicago] PHP Warning:  imagejpeg(): Filename cannot be empty in /home/cosmo/public_html/editors/tinyMCE/plugins/ajaxfilemanager/inc/class.image.php on line 281
+[15-Feb-2015 06:25:10 America/Chicago] PHP Warning:  imagejpeg(): Filename cannot be empty in /home/cosmo/public_html/editors/tinyMCE/plugins/ajaxfilemanager/inc/class.image.php on line 281
+[15-Feb-2015 06:25:23 America/Chicago] PHP Warning:  imagejpeg(): Filename cannot be empty in /home/cosmo/public_html/editors/tinyMCE/plugins/ajaxfilemanager/inc/class.image.php on line 281
+[15-Feb-2015 06:25:23 America/Chicago] PHP Warning:  imagejpeg(): Filename cannot be empty in /home/cosmo/public_html/editors/tinyMCE/plugins/ajaxfilemanager/inc/class.image.php on line 281
