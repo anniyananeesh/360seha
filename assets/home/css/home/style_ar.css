@@ -1,3 +1,4 @@
+
 @charset "utf-8";
 
 @font-face {font-family: 'GE SS'; src: url('../fonts/ge-ss-med.eot');}
@@ -19,6 +20,7 @@ body {
   margin: 0px;
   padding: 0px;
 }
+
 a{
 	cursor:pointer;
 	}
@@ -35,7 +37,7 @@ a{
 	background-color: #09F;
 	background-size:cover;
 	position: absolute!important;
-  background: url('../../img/hourglass.svg') no-repeat 50% 50%;
+	background: url('../../img/hourglass.svg') no-repeat 50% 50%;
 	background-size: 20px;
 	top: 0;
 	z-index: 0;
@@ -55,9 +57,8 @@ a{
 	z-index:100;
 	top: 20px;
 	left: 20px;
-  background-image: url(../../img/logo.svg);
+	background-image: url(../../img/logo.png);
 	background-position: 35px 20px;
-	background-size: 180px;
 	background-repeat: no-repeat;
 	background-color: #fff;
 	-webkit-box-shadow: 7px 2px 25px -3px rgba(0,0,0,0.34);
@@ -98,16 +99,22 @@ a{
 .news {
 	width: 600px;
 	margin: auto;
+	height:100px;
+	background:#000;
+	color:#fff;
 }
 
 .marquee {
 	width: 600px;
 	z-index: 100;
-	height: 50px;
-	margin: 25px auto;
-	overflow: hidden;
+	border-radius:0px 0px 30px 30px;
+	border:2px solid #fff;
+	border-top:0px;
+	min-height: 70px;
+	margin: auto;
+	overflow:hidden;
 	position: relative;
-	background-color: #222;
+	background-color: #091524;
 	-webkit-transition: background-color 350ms;
 	-moz-transition: background-color 350ms;
 	transition: background-color 350ms;
@@ -115,13 +122,28 @@ a{
 	-moz-box-shadow: 7px 2px 25px -3px rgba(0,0,0,0.34);
 	box-shadow: 7px 2px 25px -3px rgba(0,0,0,0.34);
 }
+/*.marquee img{
+	width:70px;
+	max-height:60px ;
+	overflow:hidden;
+	padding:2px;
+	border:1px solid #444;
+}
+.marquee h1{
+	text-align:center;
+	padding:0px;
+	margin:0px;
+	font-size:30px;
+	font-weight:700;
+	color:#2566b5;
+}*/
 .marquee p {
 	position: absolute;
 	font-family: Tahoma, Arial, sans-serif;
 	width: 100%;
-	height: 100%;
 	margin: 0;
-	line-height: 50px;
+	padding-top:20px;
+	line-height: 25px;
 	text-align: center;
 	color: #fff;
 	text-shadow: 1px 1px 0px #000000;
@@ -234,17 +256,17 @@ a{
 	box-shadow: 7px 2px 25px -3px rgba(0,0,0,0.34);
 }
 .article h2 {
-	padding: 0px 30px 10px 10px;
+	padding: 0px 10px 10px 10px;
 	margin-top: 8px;
 	margin-bottom: 4px;
-	background-image: url(../../img/home/go.png);
+	background-image: url(../../img/go.png);
 	background-repeat: no-repeat;
 	background-position: right 15px top 0px;
 	font-size: 16px;
 	color: #024765;
 	font-weight: 600;
 	text-transform: uppercase;
-  font-family: "GE SS", Arial
+	font-family: "GE SS", Arial
 }
 .article img {
 	padding-bottom: 0px;
@@ -256,7 +278,7 @@ a{
 	color: #024765;
 	padding-left: 10px;
 	padding-right: 3px;
-  font-family: 'Hacen_Liner_Print-out_Light';
+	font-family: 'Hacen_Liner_Print-out_Light';
 }
 .article p a {
 	color: #889c02;
@@ -271,7 +293,7 @@ a{
 	padding-right: 3px;
 	padding-left: 10px;
 	margin-bottom: 5px;
-  font-family: 'Hacen_Liner_Print-out_Light';
+	font-family: 'Hacen_Liner_Print-out_Light';
 }
 .ad_side {
 	width: 100%;
@@ -323,15 +345,15 @@ a{
 .category ul {
 }
 .category ul li {
-  display: table-cell;
-      list-style: none;
-      padding: 1px;
-      text-align: center;
-      font-size: 16px;
-      text-transform: uppercase;
-      color: #000;
-      font-weight: bold;
-      font-family: "GE SS", Arial, sans-serif;
+	display: table-cell;
+	list-style: none;
+	padding: 1px;
+	text-align: center;
+	font-size: 16px;
+	text-transform: uppercase;
+	color: #000;
+	font-weight: bold;
+	font-family: "GE SS", Arial, sans-serif;
 
 }
 .category ul li img {
@@ -376,6 +398,30 @@ a{
 	transform: translateY(-10px);
 }
 
+
+
+
+
+/*
+
+.featured.ltr {
+    display: block;
+    position: absolute;
+	border:0px;
+    background:#d29600;
+    width: 100%;
+    height: 23px;
+	z-index:200;
+    color: #fff;
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-align: center;
+    padding-top: 2px;
+}
+
+*/
+
 .article-image
 {
 	display: inline-block;
@@ -385,21 +431,20 @@ a{
 	background-color: #ddd;
 }
 
+
 .card {
     transition: 0.3s;
 	padding:0px 0px 20px 0px;
 	background-color:#fff;
 	text-align:center;
-	margin:0px 0px 0px 0px;
-	width:250px;
+	margin:10px 0px 10px 0px;
+	width:300px;
+	height:auto;
 	position: fixed;
   top: 50%;
   left: 50%;
-	text-decoration: none;
   /* bring your own prefixes */
   transform: translate(-50%, -50%);
-  /* bring your own prefixes */
-  /*transform: translate(-50%, -50%);*/
   	-webkit-box-shadow: 7px 2px 25px -3px rgba(0,0,0,0.34);
 	-moz-box-shadow: 7px 2px 25px -3px rgba(0,0,0,0.34);
 	box-shadow: 7px 2px 25px -3px rgba(0,0,0,0.34);
@@ -408,7 +453,6 @@ a{
 .card:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 	cursor:pointer;
-	text-decoration: none;
 }
 
 .container {
@@ -417,7 +461,6 @@ a{
 .card  img{
 	width:100%;
 	height:auto;
-	margin-bottom: 10px;
 }
 .card h1{
 	font-size:14px;
@@ -428,17 +471,14 @@ a{
 	background-repeat:no-repeat;
 	padding-bottom:10px;
 	margin-bottom:10px;
-	padding-top: 10px;
-	padding-right: 10px;
-	padding-left: 10px;
-  font-family: "GE SS";
+	font-family: "GE SS";
 }
 .card p{
 	font-size:15px;
 	font-weight:400;
 	color:#333333;
-	padding:0px 10px 0px 10px;
-  font-family: 'Hacen_Liner_Print-out_Light';
+	padding:0px 5px 0px 5px;
+	font-family: 'Hacen_Liner_Print-out_Light';
 }
 .card ul{
 	text-align:center;
@@ -468,7 +508,6 @@ a{
 	padding-top:30px;
 	margin-top:0px;
 	margin-bottom:30px;
-  font-family: "GE SS"
 }
 
 .card h3{
@@ -482,36 +521,47 @@ a{
 	margin-bottom:10px;
 }
 
-.hidden
-{
-	 display: none;
+
+/*<!--GET LISTED BUTTON-->*/
+
+
+.getlisted {
+/*	width: 250px;
+*/	position: absolute;
+	z-index:1;
+	top: 150px;
+	left: 20px;
+	background-color:transparent;
+	-webkit-box-shadow: 7px 2px 25px -3px rgba(0,0,0,0.34);
+	-moz-box-shadow: 7px 2px 25px -3px rgba(0,0,0,0.34);
+	box-shadow: 7px 2px 25px -3px rgba(0,0,0,0.34);
 }
 
-.open
-{
-	 display: block;
+.btn-list {
+  background: #2566b5 url(../../img/list_icon.png) 10px 15px no-repeat;
+  color: #fff;
+  width:100%;
+  margin-top:20px;
+  font-weight:600;
+  padding:15px 30px 15px 55px;
+  font-size:16px;
+  box-shadow:none;
+  border:0px;
+  text-transform:uppercase;
+   -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -ms-border-radius: 0;
+  border-radius: 0;
+  -webkit-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+  	 -webkit-box-shadow: 7px 2px 25px -3px rgba(0,0,0,0.34);
+	-moz-box-shadow: 7px 2px 25px -3px rgba(0,0,0,0.34);
+	box-shadow: 7px 2px 25px -3px rgba(0,0,0,0.34);
 }
 
-.loader
-{
-	 display: block;
-	 position: absolute;
-	 width: 100%;
-	 height: 100%;
-	 top: 0px;
-	 left: 0px;
-	 background: url('../../img/hourglass.svg') no-repeat 50% 50%;
-	 background-size: 20px;
-	 background-color: rgba(255, 255, 255, 0.5);
-	 z-index: 2000;
-}
-
-.info-close
-{
-	 color: #2282ec;
-	 font-size: 25px;
-	 position: absolute;
-	 display: block;
-	 top: 0px;
-	 right: 8px;
+.btn-list:hover, .btn-list:focus, .btn-list:active {
+  background-color: #86c33f !important;
+  color:#fff;
+  text-decoration:none;
 }

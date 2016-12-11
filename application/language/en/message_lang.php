@@ -229,3 +229,4 @@ $lang["auto.labs"] = "Labs";
 $lang["auto.clinic"] = "Clinic";
 
 $lang["auto.welcome_to_profile"] = "Welcome to ";
+$lang["auto.get_listed_with_us"] = "Get listed with us";

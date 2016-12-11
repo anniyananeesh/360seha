@@ -5,12 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="author" content="digitallgateweb.com" />
 <title><?php echo lang('auto.site_title')?></title>
-<link rel="stylesheet" href="<?php echo CSS_PATH?>/home/style_<?php echo $lan;?>.css">
-<link rel="stylesheet" href="<?php echo CSS_PATH?>/home/responsive_<?php echo $lan;?>.css">
-<link href='https://fonts.googleapis.com/css?family=Roboto:400,300,600,500,700' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" type="text/css" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
-<!-- Bootstrap  -->
-<link rel="stylesheet" href="<?php echo CSS_PATH?>/home/bootstrap.min.css">
+    <link rel="stylesheet" href="<?php echo CSS_PATH?>/home/style_<?php echo $lan;?>.css">
+    <link rel="stylesheet" href="<?php echo CSS_PATH?>/home/responsive_<?php echo $lan;?>.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,600,500,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
+
+    <!-- Bootstrap  -->
+    <link rel="stylesheet" href="<?php echo CSS_PATH?>/home/bootstrap.min.css">
 </head>
 
 <body>
@@ -118,40 +119,39 @@
 <div id="wraper">
 <div id="container_body">
 
-    <!--TOGGLE-->
-    <div class="menu-opener">
-      <div class="menu-opener-inner">&nbsp;</div>
-    </div>
-    <!--TOGGLE-->
-
   <!--LOGO-->
   <div class="logo">
-
-         <div class="language">
-              <ul>
-                  <?php if($lan == 'ar'):?>
-                    <LI><a href="<?php echo HOST_URL?>/lang/en">EN</a></LI>
-                  <?php else:?>
-                    <li><a href="<?php echo HOST_URL?>/lang/ar">AR</a></li>
-                  <?php endif;?>
-              </ul>
-          </div>
-
+  	<div class="language">
+         <ul>
+            <?php if($lan == 'ar'):?>
+              <LI><a href="<?php echo HOST_URL?>/lang/en">English</a></LI>
+            <?php else:?>
+              <li><a href="<?php echo HOST_URL?>/lang/ar">العربية</a></li>
+            <?php endif;?>
+         </ul>
+    </div>
   </div>
-  <div class="clearfix"></div>
-  <!--NEWS-->
+
   <?php if($dataNews):?>
+  <!--NEWS-->
   <div class="news">
+
     <div class="marquee">
       <?php foreach ($dataNews as $key => $value):?>
         <p><a target="_blank" href="<?php echo HOST_URL?>/news/details/<?php echo $this->encrypt->encode($value->news_id);?>"><?php echo $value->{news_title_.$lan}?></a></p>
       <?php endforeach;?>
     </div>
+
   </div>
   <?php endif;?>
 
   <!--RIGHT PORTION-->
 
+    <!--TOGGLE-->
+    <div class="menu-opener">
+      <div class="menu-opener-inner">&nbsp;</div>
+    </div>
+    <!--TOGGLE-->
   <div class="right_nav">
 
     <!--ARTICLE-->
@@ -177,13 +177,11 @@
 
     <!--AD-->
     <?php if($banner_side):?>
-
-        <div class="ad_side">
-            <a href="<?php echo prep_url($banner_side->url);?>" target="_blank">
-              <img src="<?php echo base_url();?>uploads/ads/<?php echo $banner_side->image?>"/>
-            </a>
-        </div>
-
+    <div class="ad_side">
+      <a href="<?php echo prep_url($banner_side->url);?>" target="_blank">
+        <img src="<?php echo base_url();?>uploads/ads/<?php echo $banner_side->image?>"/>
+      </a>
+    </div>
     <?php endif;?>
     <!--AD END-->
   </div>
@@ -228,7 +226,6 @@
 <script src="http://maps.google.com/maps/api/js?key=AIzaSyDA3Is0CNRYaS-ZnYRzeJA-UtNxNtBJjao"></script>
 <script src="<?php echo USER_JS_PATH?>/maplace.js"></script>
 <script src="<?php echo USER_JS_PATH?>/infobox.js"></script>
- 
 
 <script src="<?php echo JS_PATH?>/home/main.js"></script>
 
@@ -418,13 +415,16 @@
     });
 
   </script>
-  <!--/map-->
+  <!-- map-->
 
 <div id="map-canvas"></div>
-</div>
 
 <div class="loader hidden"></div>
 <div class="info-async-window hidden"></div>
+
+<div class="getlisted">
+  <a class="btn-list text-uppercase" href="<?php echo HOST_URL?>/join"><?php echo lang('auto.get_listed_with_us')?></a>
+</div>
 
 </body>
 </html>

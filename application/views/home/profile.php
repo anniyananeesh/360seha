@@ -46,17 +46,17 @@
 <div class="row">
 
 <!--LEFT BODY-->
-
 <div class="col-lg-4 col-md-6" id="sidebar">
   <div class="Profile_card">
 
-      <div class="Profile_card_img" style="background: url('<?php echo ($profileData->image == NULL) ? SUBS_IMAGE_SHOW_PATH.$profileData->subs_profile_img : SUBS_PHOTO_SHOW_PATH.$profileData->image?>') no-repeat; background-size: cover;">
+      <?php if($profileData->account_type != 3):?>
+          <div class="Profile_card_img" style="background: url('<?php echo ($profileData->image == NULL) ? SUBS_IMAGE_SHOW_PATH.$profileData->subs_profile_img : SUBS_PHOTO_SHOW_PATH.$profileData->image?>') no-repeat; background-size: cover;"></div>
+      <?php endif;?>
 
-      </div>
-      <h1><?php echo $profileData->{title_.$lan}?></h1>
+      <h1 <?php echo ($profileData->account_type == 3) ? 'style="padding-top: 45px;"' : '';?>><?php echo $profileData->{title_.$lan}?></h1>
       <p class="para-location">  <?php echo $profileData->{address1_.$lan}?>, <?php echo $profileData->{address2_.$lan}?></p>
-     <p class="para-phone">  <?php echo $profileData->subs_primary_contact?></p>
-     <p class="para-email"> <a href="mailto:<?php echo $profileData->subs_email?>"> <?php echo $profileData->subs_email?></a></p>
+      <p class="para-phone">  <?php echo $profileData->subs_primary_contact?></p>
+      <p class="para-email"> <a href="mailto:<?php echo $profileData->subs_email?>"> <?php echo $profileData->subs_email?></a></p>
 
       <?php if(!empty($menuAccess) && in_array('timings', $menuAccess)):?>
 
