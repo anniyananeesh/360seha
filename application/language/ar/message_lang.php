@@ -223,3 +223,4 @@ $lang["auto.clinic"] = "عيادة";
 $lang["auto.welcome_to_profile"] = "مرحبا بكم في ";
 $lang["auto.get_listed_with_us"] = "اشترك معنا";
 $lang["auto.ask_doctor"] = "إسأل الطبيب",;
+$lang["auto.get_listed"] = "Get Listed";

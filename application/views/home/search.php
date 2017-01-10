@@ -194,7 +194,7 @@
                   ?>
 
                   <?php if($value->account_type != 3):?>
-                    <a href="<?php echo HOST_URL?>/<?php echo urlencode($value->subs_public_profile)?>" class="card-image" style="background: url('<?php echo $image;?>') no-repeat #ddd; background-size: cover;">
+                    <a href="<?php echo HOST_URL?>/<?php echo urlencode($value->subs_public_profile)?>" class="card-image" style="background: url('<?php echo $image;?>') no-repeat 50% 50% #d6d6d6; background-size: cover;">
                     </a>
                   <?php else:?>
                     <a href="<?php echo HOST_URL?>/<?php echo urlencode($value->subs_public_profile)?>" class="card-image" style="background: url('<?php echo IMG_PATH?>/home/noimage.jpg') no-repeat 50% 50% #d6d6d6; background-size: contain;">

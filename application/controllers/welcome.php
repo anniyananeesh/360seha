@@ -51,12 +51,12 @@ class Welcome extends PublicController {
             //Load the geo service
             require_once(APPPATH.'libraries/Geo_service.php');
             $geoplugin = new Geo_service();
-            $geoplugin->locate('83.110.79.15'); // $_SERVER['REMOTE_ADDR'] => production , '83.110.79.15' => developement
+            $geoplugin->locate($_SERVER['REMOTE_ADDR']); // $_SERVER['REMOTE_ADDR'] => production , '83.110.79.15' => developement
             $this->data['lat'] = $geoplugin->latitude;
             $this->data['long'] = $geoplugin->longitude;
             //Load the geo service
 
-            $this->load->view('site-new/home', $this->data);
+            $this->load->view('site/home', $this->data);
         }
 
     }

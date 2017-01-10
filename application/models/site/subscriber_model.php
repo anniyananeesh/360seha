@@ -115,7 +115,7 @@ class Subscriber_model extends Base_model
         if(isset($params['q']) && $params['q'] != '')
         {
             $q = $params['q'];
-            $this->db->where("((".TBL_SUBSCRIBERS.".subs_title LIKE '%$q%' OR ".TBL_SUBSCRIBERS.".subs_title_ar LIKE '%$q%') OR (".TBL_SUBSCRIBERS.".description_en_long LIKE '%$q%' OR ".TBL_SUBSCRIBERS.".description_en_long_ar LIKE '%$q%') OR (".TBL_CITY.".name LIKE '%$q%' OR ".TBL_CITY.".name_ar LIKE '%$q%') OR (".TBL_SUBSCRIBERS.".subs_address_1 LIKE '%$q%' OR ".TBL_SUBSCRIBERS.".subs_address_1_ar LIKE '%$q%'))");
+            $this->db->where("((".TBL_SUBSCRIBERS.".subs_title LIKE '%$q%' OR ".TBL_SUBSCRIBERS.".subs_title_ar LIKE '%$q%') OR (".TBL_SUBSCRIBERS.".description_en_long LIKE '%$q%' OR ".TBL_SUBSCRIBERS.".description_en_long_ar LIKE '%$q%') OR (".TBL_CITY.".name LIKE '%$q%' OR ".TBL_CITY.".name_ar LIKE '%$q%') OR (".TBL_SUBSCRIBERS.".subs_address_1 LIKE '%$q%' OR ".TBL_SUBSCRIBERS.".subs_address_1_ar LIKE '%$q%' OR (" . TBL_DEPTS . ".dept_title LIKE '%$q%' OR " . TBL_DEPTS . ".dept_title_ar LIKE '%$q%')))");
         }
 
         if(isset($params['specialization']) && $params['specialization'] != '')
@@ -165,6 +165,7 @@ class Subscriber_model extends Base_model
         $this->db->join( TBL_USER_DEPTS, TBL_USER_DEPTS.'.user_id = '.TBL_SUBSCRIBERS.'.user_id', 'LEFT');
         $this->db->join( TBL_CLIENT_INSURANCE, TBL_CLIENT_INSURANCE.'.subs_id = '.TBL_SUBSCRIBERS.'.user_id', 'LEFT');
         $this->db->join( TBL_IMG_GALLERY, TBL_IMG_GALLERY.'.subscriber = '.TBL_SUBSCRIBERS.'.user_id', 'LEFT');
+        $this->db->join( TBL_DEPTS, TBL_DEPTS.'.dept_id = '.TBL_USER_DEPTS.'.dept_id', 'LEFT');
 
         if(RTL)
             $lang = 'Arabic';
