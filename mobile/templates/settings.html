@@ -1,0 +1,28 @@
+<ion-view view-title="{{'settings' | translate}}" cache-view="true" hide-back-button="true">
+
+ 	<ion-nav-buttons side="right">
+
+		<button class="button button-icon button-clear" menu-toggle="right">
+          <img src="images/menu.svg" width="20" />
+        </button>
+	</ion-nav-buttons>
+
+	<ion-content class="bg-gray">
+
+		<ion-list dir="{{(Language.isRtl()) ? 'rtl' : 'ltr'}}">
+
+			<ion-item ng-click="showPopup()">
+				<span class="config-head">{{'change_country' | translate}}</span>
+			    <div class="config-value">{{(Language.isRtl()) ? user.countryAr : user.countryEn}}</div>
+			</ion-item>
+
+			<ion-item ng-click="showPopupLang()">
+				<span class="config-head">{{'language' | translate}}</span>
+			    <div class="config-value">{{user.languageOpt}}</div>
+			</ion-item>
+
+		</ion-list>
+
+	</ion-content>
+
+</ion-view>

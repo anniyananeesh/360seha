@@ -1,0 +1,41 @@
+<ion-modal-view cache-view="true">
+ 	
+ 	<ion-header-bar class="main-header">
+        <div class="title">{{'choose_services' | translate}}</div>  
+
+        <div class="buttons buttons-right">
+            <span class="right-buttons">
+                <button class="button button-clear button-search" ng-click="closeModal()">
+			        <i class="ion-close-round"></i>
+			    </button> 
+            </span>
+        </div>      
+
+    </ion-header-bar> 
+	
+	<ion-content class="has-header services-list" dir="{{(Language.isRtl()) ? 'rtl' : 'ltr'}}">
+
+		<div class="padded services-bg">
+		
+			<div class="item-input-inset nopads">
+
+          		<label class="item-input-wrapper">
+                 	<i class="icon ion-ios-search"></i>
+                 	<input type="search" autofocus id="qry" name="qry" ng-model="user.qry"/>
+            	</label> 
+
+        	</div>
+ 			
+ 			<div class="department-list">
+ 				<div ng-repeat="data in department | filter:user.qry">
+					<p class="category-item" ng-click="getDept(data.id)">{{(Language.isRtl()) ? data.dept_title_ar : data.dept_title_en}}</p>
+				</div>
+			</div>
+
+		</div>
+
+	 	<div class="clearfix"></div> 
+
+	</ion-content>
+
+</ion-modal-view>

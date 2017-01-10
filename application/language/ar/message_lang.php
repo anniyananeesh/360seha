@@ -221,4 +221,5 @@ $lang["auto.labs"] = "مختبر";
 $lang["auto.clinic"] = "عيادة";
 
 $lang["auto.welcome_to_profile"] = "مرحبا بكم في ";
-$lang["auto.get_listed_with_us"] = "Get listed with us";
+$lang["auto.get_listed_with_us"] = "اشترك معنا";
+$lang["auto.ask_doctor"] = "إسأل الطبيب",;

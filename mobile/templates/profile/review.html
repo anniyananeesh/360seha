@@ -1,0 +1,80 @@
+<ion-view view-title="" cache-view="true">
+ 
+	<ion-nav-bar class="bar bar-alpha2">
+	
+		<ion-nav-buttons side="left">
+			<button class="button button-icon button-clear button-icon-md" ng-click="goParent()">
+	          <i class="ion-android-arrow-back"></i>
+	        </button>
+		</ion-nav-buttons>
+		
+		<ion-nav-title>{{'reviews' | translate}}</ion-nav-title>
+		
+		<ion-nav-buttons side="right">
+			
+			<button class="button button-icon button-clear button-icon-md" ng-click="call(user.phone)">
+	          <i class="ion-android-call"></i>
+	        </button>
+	        
+		</ion-nav-buttons>
+	
+	</ion-nav-bar>
+	
+	<div class="block has-header review-header">
+		
+		<div class="clearfix"></div>
+		
+		<div class="profile-info profile-info2" dir="{{(Language.isRtl()) ? 'rtl' : 'ltr'}}">
+			
+			<p class="profile-title">{{(Language.isRtl()) ? user.title_ar : user.title_en}}</p>
+			<p class="profile-text1 number">{{((Language.isRtl()) ? user.address_ar : user.address_en) | limitTo : 25}}, {{(Language.isRtl()) ? user.city_name_ar : user.city_name_en}}</p>
+ 
+			<div class="clearfix"></div>
+			
+			<button class="button button-review button-review2" ng-class="{'pull-left' :!Language.isRtl(), 'pull-right' :Language.isRtl()}" ng-click="addReviewActivity()">{{'add_review' | translate}}</button>
+			
+			<div class="inline profile-smedia-info user-rating" ng-class="{'pull-left' :!Language.isRtl(), 'pull-right' :Language.isRtl()}"> 
+ 
+				<ng-rate-it ng-model="user.rating" class="custom" resetable="false" read-only="true" star-width="18" star-height="16"></ng-rate-it>
+ 
+			</div>
+			
+			<div class="clearfix"></div>
+			
+			<div class="underline"></div>
+			
+			<div class="clearfix"></div>
+		</div>
+		
+		<div class="clearfix"></div>
+ 
+	</div>
+
+	<ion-content class="has-top-header review-body">
+ 
+ 		<div class="block review-item" ng-repeat="data in reviews track by $index">
+ 			
+ 			<div class="review-header block" dir="{{(Language.isRtl()) ? 'rtl' : 'ltr'}}">
+ 				
+ 				<p class="review-name inline" ng-class="{'pull-left' :!Language.isRtl(), 'pull-right' :Language.isRtl()}">{{data.name}}</p>
+ 				<div class="review-rating" ng-class="{'pull-left' :!Language.isRtl(), 'pull-right' :Language.isRtl()}">
+ 					<ng-rate-it ng-model="data.rating" class="custom" resetable="false" read-only="true" star-width="18" star-height="16"></ng-rate-it>
+ 				</div>	
+ 				
+ 				<div class="clearfix"></div>
+ 				
+ 				<div class="review-posted">{{data.created_on}}</div>
+ 				
+ 			</div>
+ 			
+ 			<div class="clearfix"></div>
+ 			
+ 			<div class="review-content block" dir="{{(Language.isRtl()) ? 'rtl' : 'ltr'}}">{{data.message}}</div>
+ 
+ 		</div>
+ 		
+ 		<ion-infinite-scroll immediate-check="false"  on-infinite="loadData()" ng-if="!moreData"></ion-infinite-scroll>
+ 
+	</ion-content>
+
+</ion-view>

@@ -1,0 +1,28 @@
+<ion-view view-title="{{'tips_details' | translate}}" cache-view="true">
+ 
+	<ion-content class="has-footer bg-gray" dir="{{(Language.isRtl()) ? 'rtl' : 'ltr'}}">
+
+		<div class="item card-item">
+		    <h2>{{(Language.isRtl()) ? tips.title_ar : tips.title_en}}</h2>
+		    <p>{{tips.created_on}}</p>
+		</div>
+
+		<img class="full-image" src="{{baseUrl}}uploads/tips/{{tips.image}}" />
+
+		<div class="card-description well nomargins" ng-bind-html="tips.description_en" ng-if="!Language.isRtl()"></div>
+		<div class="card-description well nomargins" ng-bind-html="tips.description_ar" ng-if="Language.isRtl()"></div>
+
+		<div class="clearfix"></div>
+
+		<div class="well card-footer">
+			<button class="button button-clear text-uppercase button-primary text-blue" ng-click="share(tips.title_en, tips.title_ar, tips.image)">
+				<i class="ion-android-share"></i>
+				{{'share' | translate}}
+			</button>
+		</div>
+
+	</ion-content>
+
+	<div ng-include src="'templates/footers/home.html'"></div>
+
+</ion-view>

@@ -1,0 +1,24 @@
+<ion-footer-bar class="bar-footer profile-footer" dir="{{(Language.isRtl()) ? 'rtl' : 'ltr'}}">
+
+	<button class="button-clear text-uppercase" ng-click="getOffer(pinboard.user_id, pinboard.wall_id)">
+		<span><i class="ion-happy"></i></span>
+		{{'get' | translate}}
+	</button>
+
+	<button class="button-clear text-uppercase" ng-click="locate(pinboard.latitude, pinboard.longitude)">
+		<span><i class="ion-location"></i></span>
+		{{'locate' | translate}}
+	</button>
+
+	<button class="button-clear text-uppercase" ng-click="call(pinboard.phone)">
+		<span><i class="ion-android-call"></i></span>
+		{{'call' | translate}}
+	</button> 
+
+	<button class="button-clear text-uppercase" ng-click="share( pinboard.title_en, pinboard.description_en, pinboard.image)">
+		<span><i class="ion-share"></i></span>
+		{{'share' | translate}}
+	</button> 
+	
+
+</ion-footer-bar>

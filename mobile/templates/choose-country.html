@@ -1,0 +1,32 @@
+<ion-view view-title="{{'choose_country' | translate}}" cache-view="true">
+ 
+	<ion-nav-buttons side="right"></ion-nav-buttons>
+	
+	<ion-content direction="y" dir="{{(Language.isRtl()) ? 'rtl' : 'ltr'}}">
+
+          <div class="text-center" ng-if="countryEn != '' && countryEn != null">
+            <div class="country-name-label">
+              {{(Language.isRtl()) ? countryAr : countryEn}}	
+            </div>
+          </div> 
+          
+          <div class="padded country-names"> 
+		  
+		  	<ion-list dir="{{(Language.isRtl()) ? 'rtl' : 'ltr'}}">
+                    
+	          	<ion-item  class="item" ng-repeat="data in country track by $index" ng-class="{'item-thumbnail-left' : !Language.isRtl(), 'item-thumbnail-right' : Language.isRtl()}" ng-click="chooseCountry(data)">
+	
+	              	<img src="{{baseUrl}}uploads/country/{{data.image_url}}" width="50" class="img-bordered">
+	              	<h2>{{(Language.isRtl()) ? data.name_ar : data.name_en}}</h2>
+	 
+	          	</ion-item>  
+                    
+    		</ion-list> 
+          		
+          </div>
+
+          <div class="clearfix"></div>
+        
+ 	</ion-content>
+
+</ion-view>

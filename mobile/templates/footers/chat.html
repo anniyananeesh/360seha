@@ -1,0 +1,12 @@
+<ion-footer-bar class="bar-footer chat-footer nopads">
+
+	<div class="row nopads chat-pad" dir="{{(Language.isRtl()) ? 'rtl' : 'ltr'}}">
+
+		<input type="text" class="chat-box" placeholder="{{'enter_your_message' | translate}}" id="message" name="message" ng-model="userForm.message" />
+
+		<button class="button button-clear" ng-click="sendChat()">
+			<i class="ion-paper-airplane"></i>
+		</button>
+	</div>	
+
+</ion-footer-bar>

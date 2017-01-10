@@ -1,0 +1,78 @@
+<ion-view view-title="{{'latest_news' | translate}}" cache-view="true">
+ 	
+ 	
+ 	<ion-nav-buttons side="right">
+		
+		<button class="button button-icon button-clear" menu-toggle="right">
+          <img src="images/menu.svg" width="20" />
+        </button>
+	</ion-nav-buttons>
+	
+	
+	<ion-content class="has-footer" dir="{{(Language.isRtl()) ? 'rtl' : 'ltr'}}">
+
+		<div ng-repeat="data in news track by $index">
+
+			<div class="list card" ng-if="Language.getLang() == data.lang || data.lang == 'Both'">
+
+			  <a class="item card-item" href="#/app/news_details/{{data.id}}">
+			    <h2>{{(Language.isRtl()) ? data.title_ar : data.title_en}} {{lang}}</h2>
+			    <p>{{data.created_on}}</p>
+			  </a>
+
+			  <div class="item item-body nopads">
+
+			    <a href="#/app/news_details/{{data.id}}">
+			    	<img class="full-image" src="{{baseUrl}}uploads/news/{{data.image}}" ng-if="data.image != null"/>
+			    </a>
+			    
+			    <div class="well block card-footer" ng-class="{'ltr' : !Language.isRtl(), 'rtl' : Language.isRtl()}">
+			      <a href="#/app/news_details/{{data.id}}" class="subdued text-uppercase text-blue">
+			      	<i class="ion-ios-book"></i>
+			      	{{'read_now' | translate}}
+			      </a>
+			      <a ng-click="share(data.title_en, data.title_ar, data.image)" class="subdued text-uppercase">
+			      	<i class="ion-android-share"></i>
+			      	{{'share' | translate}}
+			      </a>
+			    </div>
+			    
+			  </div>
+
+			</div> 
+			
+			<div ng-if="($index + 1) % 2 == 0">
+ 				
+ 				<div ng-init='ad = getAdBanner()'>
+ 			 
+					<div class="list card" ng-if="ad" ng-click="goUrl(ad.url)">
+	
+					  <div class="item card-item">
+					    <h2><i class="ion-ios-information-outline"></i> {{ad.title_en}}</h2>
+					  </div>
+	
+					  <div class="item item-body nopads">
+					    <img class="full-image" src="{{baseUrl}}uploads/ads/{{ad.image}}">
+					    <div class="well block card-footer">
+					      <a ng-click="shareAd(ad.title_en, ad.image)" class="subdued text-uppercase text-blue">
+					      	<i class="ion-android-share"></i>
+					      	{{'share' | translate}}
+					      </a>
+					    </div>
+					  </div>
+	
+					</div> 
+					 
+				</div>
+
+			</div>
+
+		</div>
+
+		<ion-infinite-scroll immediate-check="false"  on-infinite="loadData()" ng-if="!moreData"></ion-infinite-scroll>
+
+	</ion-content>
+
+	<div ng-include src="'templates/footers/home.html'"></div>
+
+</ion-view>

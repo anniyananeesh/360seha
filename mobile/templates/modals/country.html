@@ -1,0 +1,3 @@
+<ion-list dir="{{(Language.isRtl()) ? 'rtl' : 'ltr'}}">
+	<ion-radio ng-model="user.countryOpt" ng-value="data.id" ng-repeat="data in country track by $index" ng-click="setCountry(data)">{{(Language.isRtl()) ? data.name_ar : data.name_en}}</ion-radio>
+</ion-list>

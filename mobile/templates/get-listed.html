@@ -1,0 +1,88 @@
+<ion-view view-title="{{'get_listed' | translate}}" cache-view="true">
+
+	<ion-nav-buttons side="right"> </ion-nav-buttons> 
+
+	<ion-content class="form review-body">
+  
+		<form class="frm-advertise search-filter padding-t-md" name="frmListed" id="frmListed" ng-submit="sendRequest(frmListed.$valid)" novalidate dir="{{(Language.isRtl()) ? 'rtl' : 'ltr'}}">
+ 
+				<label class="form-group" ng-if="!Language.isRtl()">
+				    <input type="text" placeholder="{{'company_name_english' | translate}}" class="form-control" ng-model="user.name_en" id="name_en" name="name_en"/> 
+				    <div class="error-container last-error-container" ng-show="user.name_en.$error && user.name_en.$submitted" ng-messages="user.name_en.$error">
+		                <div ng-messages-include="templates/error-list.html"></div> 
+		            </div>
+			    </label>
+			    
+			    <label class="form-group" ng-if="Language.isRtl()"">
+				    <input type="text" placeholder="{{'company_name_arabic' | translate}}" class="form-control" ng-model="user.name_ar" id="name_ar" name="name_ar"/> 
+				    <div class="error-container last-error-container" ng-show="user.name_en.$error && user.name_ar.$submitted" ng-messages="user.name_ar.$error">
+		                <div ng-messages-include="templates/error-list.html"></div> 
+		            </div>
+			    </label> 
+			    
+			    <label class="form-group">
+
+					<span class="label-control">{{'you_are_a' | translate}}</span>
+				    <select class="form-control" ng-model="user.category" id="category" name="category" required>
+				    	<option value="{{data.id_category}}" ng-repeat="data in categories track by $index">{{(Language.isRtl()) ? data.name_ar : data.name_en}}</option>
+				    </select>
+					
+					<div class="error-container last-error-container" ng-show="user.category.$error && user.category.$submitted" ng-messages="user.category.$error">
+		                <div ng-messages-include="templates/error-list.html"></div> 
+		            </div>
+		            
+				</label>
+				
+				<label class="form-group">
+
+					<span class="label-control">{{'having_depts_in' | translate}}</span>
+				    <button type="button" class="button button-block button-choose" ng-click="showModal()">{{(chosenItems.length > 0) ? chosenItems.length : ''}} {{(chosenItems.length > 0) ? 'departments_chosen' : 'choose_departments' | translate}}</button>
+	
+				</label>
+				
+				<label class="form-group">
+					<input type="email" placeholder="{{'official_email_address' | translate}}" class="form-control" ng-model="user.email" id="email" name="email" />
+					<div class="error-container last-error-container" ng-show="user.email.$error && user.email.$submitted" ng-messages="user.email.$error">
+		                <div ng-messages-include="templates/error-list.html"></div> 
+		            </div>
+				</label>
+				
+				<label class="form-group">
+					<input type="text" placeholder="{{'official_contact_no' | translate}}" class="form-control" ng-model="user.contact_no" id="contact_no" name="contact_no" required />
+					<div class="error-container last-error-container" ng-show="user.contact_no.$error && user.contact_no.$submitted" ng-messages="user.contact_no.$error">
+		                <div ng-messages-include="templates/error-list.html"></div> 
+		            </div>
+				</label>
+				
+				<label class="form-group">
+					<input type="url" placeholder="{{'website_or_facebook_link' | translate}}" class="form-control" ng-model="user.url" id="url" name="url" />
+					<div class="error-container last-error-container" ng-show="user.url.$error && user.url.$submitted" ng-messages="user.url.$error">
+		                <div ng-messages-include="templates/error-list.html"></div> 
+		            </div>
+				</label>
+				
+				<label class="form-group">
+ 
+				    <button type="button" class="button button-block button-choose" ng-click="shareLocation()">{{'share_business_location' | translate}}</button>
+				    
+				    <span class="location-info">
+				    	{{user.city + " " + user.state + " " + user.country}}
+				    </span>
+				    
+				</label> 
+
+			<div class="clearfix"></div>  
+
+			<div class="block text-center">
+				<button type="submit" class="text-uppercase button button-primary button-block">
+					{{'get_listed' | translate}}
+				</button>
+			</div>
+
+			<div class="clearfix"></div> 
+
+		</form>
+
+	</ion-content> 
+
+</ion-view>

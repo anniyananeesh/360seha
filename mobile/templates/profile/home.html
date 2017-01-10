@@ -1,0 +1,200 @@
+<ion-view view-title="" cache-view="false">
+
+	<ion-nav-bar class="bar bar-alpha">
+
+		<ion-nav-buttons side="left">
+			<button class="button button-icon button-clear button-icon-md" ng-click="goParent()">
+	          <i class="ion-android-arrow-back"></i>
+	        </button>
+		</ion-nav-buttons>
+
+		<ion-nav-buttons side="right">
+
+			<button class="button button-icon button-clear button-icon-md" ng-click="call(user.phone)">
+	          <i class="ion-android-call"></i>
+	        </button> 
+
+		</ion-nav-buttons>
+
+	</ion-nav-bar>
+
+	<ion-content class="review-body" ng-class="{'has-no-header has-footer' : (user.is_featured == 1), 'has-header' : (user.is_featured != 1)}">
+
+		<div class="profile-image-holder" ng-if="user.type != 3">
+
+			<ion-slide-box ng-if="images.length > 0">
+		        <ion-slide fancybox ng-repeat="data in images track by $index">
+		          <div class="profile-image-slides" ng-click="openFancybox(data.img_url)" style="background: url('{{imageUrl}}/{{data.img_url}}') no-repeat #ddd; background-size: cover;"></div>
+		        </ion-slide>
+			</ion-slide-box>
+
+			<div class="profile-image-slides noimage2" ng-if="images.length == 0">
+				No images
+			</div>
+
+			<div class="profile-gradient"></div>
+			<div class="user-rating pull-left">
+				<ng-rate-it ng-model="user.rating" class="custom" resetable="false" read-only="true" star-width="18" star-height="16"></ng-rate-it>
+			</div>
+
+			<div class="user-views pull-right" ng-if="user.views > 0">
+				{{user.views}}&nbsp;&nbsp;<img	src="images/ic_profile_views.svg" width="18"/>
+			</div>
+
+		</div>
+
+		<div class="clearfix"></div>
+
+		<div class="profile-info" dir="{{(Language.isRtl()) ? 'rtl' : 'ltr'}}">
+
+			<p class="profile-title">{{(Language.isRtl()) ? user.title_ar : user.title_en}} <span class="twnty_fourhrs" ng-if="user.emergency == 1">24hrs</span></p>
+			<p class="profile-text1 number">{{(Language.isRtl()) ? user.address_ar : user.address_en}}, {{(Language.isRtl()) ? user.city_name_ar : user.city_name_en}}</p>
+
+			<div class="clearfix"></div>
+
+			<button class="button button-review" ng-class="{'pull-left ltr' :!Language.isRtl(), 'pull-right rtl' :Language.isRtl()}" ng-click="reviewActivity(user, socialMedias)">{{'read_reviews' | translate}}</button>
+ 			<button class="button button-review button-ask-doctor" ng-class="{'pull-left' :!Language.isRtl(), 'pull-right' :Language.isRtl()}" ng-click="goUrl(user.subs_url)" ng-if="user.subs_url != null && user.subs_url != ''">{{'profile' | translate}}</button>
+
+			<div class="clearfix"></div>
+
+		</div>
+
+		<div class="clearfix"></div>
+
+		<!-- Featured user random -->
+		<div class="random-featured" ng-class="{'loader': loading_featured}" ng-if="user.type == 3" style="background: #E4E4E4!Important;">
+
+			<ion-item ng-if="featured_user != null" ng-click="showProfile(featured_user.user_id)" class="item" ng-class="{'featured': (featured_user.is_featured == 1) , 'item-thumbnail-left' : !Language.isRtl(), 'item-thumbnail-right' : Language.isRtl()}" dir="{{(Language.isRtl()) ? 'rtl' : 'ltr'}}">
+
+	          <img src="{{baseUrl}}uploads/subscribers/profile/{{featured_user.logo}}" width="80" class="img-bordered">
+	          <h2>{{(Language.isRtl()) ? featured_user.title_ar : featured_user.title_en}} <span class="twnty_fourhrs" ng-if="featured_user.emergency == 1">24hrs</span></h2>
+	          <p class="address category">{{(Language.isRtl()) ? featured_user.category_name_ar : featured_user.category_name_en}}</p>
+	          <p class="address last number">{{(Language.isRtl()) ? featured_user.address_ar : featured_user.address_en}}, {{(Language.isRtl()) ? featured_user.city_name_ar : featured_user.city_name_en}}</p>
+	          <div class="item-action row nopads" ng-class="{'rtl': Language.isRtl(), 'ltr': !Language.isRtl()}">
+
+	  			<button class="button button-clear text-uppercase" ng-click="showProfile(featured_user.user_id)">
+	             	<img src="images/ic-info.svg" width="12"/>
+	            	{{'details' | translate}}
+	        	</button>
+
+	            <button class="button button-clear text-uppercase" ng-if="popUser.views > 0">
+	                <i class="ion-eye"></i>
+	                {{featured_user.views}}
+	            </button>
+
+	            <button class="button button-clear text-uppercase text-offers" ng-if="featured_user.offers > 0">
+	                <i class="ion-pricetag"></i>
+	                {{featured_user.offers}}
+	            </button>
+
+	          </div>
+
+	          <div class="featured" ng-class="{'rtl': Language.isRtl(), 'ltr': !Language.isRtl()}">{{'featured' | translate}}</div>
+
+	      	</ion-item>
+
+		</div>
+		<!-- random end -->
+
+		<div class="clearfix"></div>
+
+		<div class="profile-offer" ng-if="pinboards" dir="{{(Language.isRtl()) ? 'rtl' : 'ltr'}}">
+
+			<div class="profile-offer-text" ng-class="{'ltr' :!Language.isRtl(), 'rtl' :Language.isRtl()}">
+
+				<ion-slide-box auto-play="true" slide-interval="1000" show-pager="false" does-continue="true">
+
+					<ion-slide ng-repeat="data in pinboards track by $index" ng-click="getOffers()">
+						{{((Language.isRtl()) ? data.offer_title_ar : data.offer_title_en) | limitTo : 50}}
+						<i ng-class="{'ion-arrow-right-b' :!Language.isRtl(), 'ion-arrow-left-b' :Language.isRtl()}"></i>
+					</ion-slide>
+
+				</ion-slide-box>
+
+			</div>
+
+		</div>
+
+		<div class="clearfix"></div>
+
+		<div class="section">
+
+			<p class="section-title nomargins" dir="{{(Language.isRtl()) ? 'rtl' : 'ltr'}}" ng-click="locate(event,user.latitude, user.longitude)">
+				<img src="images/ic_profile_location.svg" width="15"/>
+				{{'our_location' | translate}}
+
+				<span class="profile-location" ng-class="{'pull-right rtl': Language.isRtl(), 'pull-left ltr': !Language.isRtl()}">
+					( {{'click_here' | translate}} )
+				</span>
+			</p>
+
+			<div class="section-content nopads">
+
+				 <div class="gmaps block">
+
+				 	<ng-map ng-if="user.latitude != 0 && user.longitude  != 0"
+				    		center="[{{user.latitude}},{{user.longitude}}]"
+				    		zoom="15"
+			      		 	class="map_canvas"
+			      		 	disable-default-u-i="true"
+				         	data-tap-disabled="true"
+				         	map-type-id="MapTypeId.ROADMAP"
+				         	styles='[{"featureType":"landscape.natural.landcover","elementType":"all","stylers":[{"visibility":"on"}]},{"featureType":"landscape.natural.terrain","elementType":"all","stylers":[{"visibility":"on"}]},{"featureType":"poi","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"poi.attraction","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"poi.attraction","elementType":"labels.text","stylers":[{"visibility":"off"}]},{"featureType":"poi.business","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"poi.business","elementType":"labels.text","stylers":[{"visibility":"off"}]},{"featureType":"poi.park","elementType":"all","stylers":[{"visibility":"on"}]},{"featureType":"poi.sports_complex","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"poi.sports_complex","elementType":"labels.text","stylers":[{"visibility":"off"}]}]'>
+
+					 	 <marker ng-if="curr_lat != 0 && curr_long  != 0" position="{{user.latitude}},{{user.longitude}}" animation="Animation.DROP" centered="true" icon="images/ic-locate.svg" on-click="locate(event, user.latitude, user.longitude)"></marker>
+
+					</ng-map>
+
+				 </div>
+
+			</div>
+
+		</div>
+
+		<div class="clearfix"></div>
+
+		<div class="section">
+
+			<p class="section-title" ng-class="{'text-right': Language.isRtl(), 'text-left': !Language.isRtl()}" dir="{{(Language.isRtl()) ? 'rtl' : 'ltr'}}">
+				<img src="images/ic_profile_about.svg" width="6"/>
+				{{'about' | translate}}
+			</p>
+
+			<div class="section-content profile-description-n" ng-bind-html="user.description_en" ng-if="user.description_en != null && !Language.isRtl()"></div>
+			<div class="section-content text-right profile-description-n" ng-bind-html="user.description_ar" ng-if="user.description_ar != null && Language.isRtl()"></div>
+
+			<div class="section-content profile-description-n" ng-if="user.description_en == null && !Language.isRtl()" dir="ltr">
+				 Welcome to {{user.title_en}}.
+			</div>
+
+			<div class="section-content profile-description-n" ng-if="user.description_ar == null && Language.isRtl()" dir="rtl">
+			 	 مرحبا بكم في  {{user.title_ar}}
+			</div>
+
+			<div class="profile-departments block" dir="{{(Language.isRtl()) ? 'rtl' : 'ltr'}}" ng-if="departments.length > 0">
+
+				<p class="head block">{{'departments_we_have' | translate}}</p>
+
+				<ul class="block">
+					<li ng-repeat="data in departments track by $index" ng-click="getUsersByDept(data.id)">{{(Language.isRtl()) ? data.title_ar : data.title_en}}</li>
+				</ul>
+
+			</div>
+
+			<div class="clearfix"></div>
+
+		</div>
+
+		<div class="clearfix"></div>
+
+	</ion-content>
+
+	<ion-footer-bar class="bar-footer home-footer text-center" ng-controller="FooterCtrl" dir="{{(Language.isRtl()) ? 'rtl' : 'ltr'}}" ng-if="user.is_featured == 1">
+
+		<button class="button button-clear button-block" ng-click="showModal()">
+			<i class="ion-chatbox-working get-listed-ic"></i> {{'ask_the_doctor' | translate}}
+		</button>
+
+	</ion-footer-bar>
+
+</ion-view>

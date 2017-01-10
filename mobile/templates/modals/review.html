@@ -1,0 +1,53 @@
+<ion-modal-view cache-view="true">
+ 	
+ 	<ion-header-bar class="main-header">
+        <div class="title">{{'add_review' | translate}}</div>  
+
+        <div class="buttons buttons-right">
+            <span class="right-buttons">
+                <button class="button button-clear button-search" ng-click="closeModal()">
+			        <i class="ion-close-round"></i>
+			    </button> 
+            </span>
+        </div>      
+
+    </ion-header-bar> 
+	
+	<ion-content class="has-header review-body" dir="{{(Language.isRtl()) ? 'rtl' : 'ltr'}}">
+
+		 <form class="frm-advertise search-filter" name="frmListed" id="frmListed" ng-submit="rateUser(frmListed.$valid)" novalidate dir="{{(Language.isRtl()) ? 'rtl' : 'ltr'}}">
+		 		
+		 		<label class="form-group">
+
+					<span class="label-control">{{'your_name' | translate}}</span>
+				    <input type="text" class="form-control" name="name" id="name" ng-model="review.name" required/>
+		            
+				</label>
+				
+		 		<label class="form-group">
+
+					<span class="label-control">{{'how_many_stars_you_rate' | translate}}</span>
+				    <ng-rate-it ng-model="review.rating" read-only="false" class="custom-big" min="0" max="5" resetable="false" step="1" star-width="36" star-height="32"></ng-rate-it>
+		            
+				</label>
+				
+				<label class="form-group">
+	 				<span class="label-control">{{'write_your_review' | translate}}</span>
+				    <textarea class="form-control" name="message" id="message" ng-model="review.message" required></textarea>
+				</label> 
+		 		
+		 		<div class="clearfix"></div>  
+
+				<div class="block text-center">
+					<button type="submit" class="text-uppercase button button-primary button-block">
+						{{'submit' | translate}}
+					</button>
+				</div>
+	
+				<div class="clearfix"></div>
+			
+		 </form>
+
+	</ion-content>
+
+</ion-modal-view>

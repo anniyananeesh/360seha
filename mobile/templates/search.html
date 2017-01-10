@@ -1,0 +1,159 @@
+<ion-view view-title="{{'search' | translate}}" cache-view="false">
+	
+	<ion-nav-buttons side="left"></ion-nav-buttons>
+	
+	<ion-nav-buttons side="right">
+
+		<button class="button button-clear" ng-click="showFilter()">
+			<img src="images/ic-filter.svg" width="22"/>
+		</button>
+
+	</ion-nav-buttons> 
+
+	<ion-content class="content has-footer">
+
+		<ion-list ng-if="view == 'list'" dir="{{(Language.isRtl()) ? 'rtl' : 'ltr'}}">
+                    
+          	<ion-item ng-click="showProfile(data.user_id)" class="item" ng-repeat="data in users track by $index" ng-class="{'featured': (data.is_featured == 1), 'item-thumbnail-left' : !Language.isRtl() && (data.image != null || data.logo != null && data.account_type != 3), 'item-thumbnail-right' : Language.isRtl() && (data.image != null || data.logo != null && data.account_type != 3), 'noimage' : ((data.image == null && data.logo == null) || data.account_type == 3), 'ltr' : !Language.isRtl(), 'rtl' : Language.isRtl()}">
+
+              	<img src="{{baseUrl}}/uploads/subscribers/profile/{{data.logo}}" width="80" class="img-bordered" ng-if="data.image == null && (data.logo != null && data.logo != '' && data.account_type != 3)">
+              	<div class="item-bg-image" ng-class="{'ltr': !Language.isRtl(), 'rtl': Language.isRtl()}" style="background: url('{{baseUrl}}uploads/gallery/photo/{{data.image}}') no-repeat; background-size: cover;" ng-if="data.image != null && data.image != '' && data.account_type != 3"></div>
+              	<h2>{{(Language.isRtl()) ? data.title_ar : data.title_en}} <span class="twnty_fourhrs" ng-if="data.emergency == 1">24hrs</span></h2>
+              	<p class="address category">{{(Language.isRtl()) ? data.category_name_ar : data.category_name_en}}</p>
+              	<p class="address number last">{{(Language.isRtl()) ? data.address_ar : data.address_en}}, {{(Language.isRtl()) ? data.city_name_ar : data.city_name_en}}</p> 
+ 
+               	<div class="item-action row nopads" ng-class="{'rtl': Language.isRtl(), 'ltr': !Language.isRtl()}">
+              	  
+                  <div class="user-count" ng-class="{'rtl': Language.isRtl(), 'ltr': !Language.isRtl(), 'featured-cnt': (data.is_featured == 1)}"> 
+                    {{$index + 1}}
+                  </div>
+                  
+                  <button class="button button-clear text-uppercase" ng-click="showProfile(data.user_id)">
+                      <img src="images/ic-info.svg" width="12"/>
+                      {{'details' | translate}}
+                  </button>
+                   
+                  <button class="button button-clear text-uppercase" ng-if="data.views > 0">
+                      <i class="ion-eye"></i>
+                      {{data.views}}
+                  </button>
+                  
+                  <button class="button button-clear text-uppercase text-offers" ng-if="data.offers > 0">
+                      <i class="ion-pricetag"></i>
+                      {{data.offers}}
+                  </button>
+                  
+                  <button class="button button-clear text-uppercase">
+                      <i class="ion-location"></i>
+                      {{data.distance | number:1}} Km
+                  </button> 
+
+              	</div>
+
+                <div class="featured" ng-class="{'rtl': Language.isRtl(), 'ltr': !Language.isRtl()}" ng-if="data.is_featured == 1">{{'featured' | translate}}</div>
+                
+          	</ion-item>
+                    
+       	  <ion-infinite-scroll immediate-check="false"  on-infinite="loadData()" ng-if="!moreData"></ion-infinite-scroll>
+                    
+    	</ion-list> 
+ 
+	</ion-content>
+ 
+  <ion-content class="content has-header has-footer" ng-if="view == 'map'">
+  	
+  		<ng-map ng-if="curr_lat != 0 && curr_long  != 0"
+	    		center="[{{curr_lat}},{{curr_long}}]"
+	    		zoom="12"  
+      		 	class="map_canvas" 
+      		 	disable-default-u-i="true"
+	         	data-tap-disabled="true"
+	         	map-type-id="MapTypeId.ROADMAP"
+	         	styles='[{"featureType":"landscape.natural.landcover","elementType":"all","stylers":[{"visibility":"on"}]},{"featureType":"landscape.natural.terrain","elementType":"all","stylers":[{"visibility":"on"}]},{"featureType":"poi","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"poi.attraction","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"poi.attraction","elementType":"labels.text","stylers":[{"visibility":"off"}]},{"featureType":"poi.business","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"poi.business","elementType":"labels.text","stylers":[{"visibility":"off"}]},{"featureType":"poi.park","elementType":"all","stylers":[{"visibility":"on"}]},{"featureType":"poi.sports_complex","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"poi.sports_complex","elementType":"labels.text","stylers":[{"visibility":"off"}]}]'> 
+ 
+		 	 <custom-marker ng-repeat="data in users track by $index" position="{{data.latitude}}, {{data.longitude}}"
+		          on-click="popUserInfo(event, data.user_id, data)" animation="Animation.DROP">
+ 
+		          <div ng-class="{ 'normal-marker' : (data.is_featured != 1), 'emergency-marker' : (data.emergency == 1), 'featured-marker' : (data.is_featured == 1)}">
+		          	{{(data.is_featured != 1) ? ((data.category != 39) ? $index + 1 : '') : ''}}
+		          </div>
+		          
+		 	 </custom-marker>
+ 
+		</ng-map>
+  	
+  </ion-content>
+
+  <div class="info-window" ng-if="view == 'map' && popUser != null">
+
+      <ion-item class="item" ng-class="{'featured': (popUsrAdData.is_featured == 1), 'item-thumbnail-left' : !Language.isRtl() && (popUsrAdData.image != null || popUsrAdData.logo != null), 'item-thumbnail-right' : Language.isRtl() && (popUsrAdData.image != null || popUsrAdData.logo != null), 'noimage' : (popUsrAdData.image == null && popUsrAdData.logo == null), 'ltr' : !Language.isRtl(), 'rtl' : Language.isRtl()}">
+
+                <img ng-click="navActivity(popUser.latitude,popUser.longitude)" src="{{baseUrl}}uploads/subscribers/profile/{{popUser.logo}}" width="80" class="img-bordered" ng-if="popUsrAdData.logo != null">
+                <h2 ng-click="navActivity(popUser.latitude,popUser.longitude)">{{(Language.isRtl()) ? popUser.title_ar : popUser.title_en}} <span class="twnty_fourhrs" ng-if="popUsrAdData.emergency == 1">24hrs</span></h2>
+                <p ng-click="navActivity(popUser.latitude,popUser.longitude)" class="address category">{{(Language.isRtl()) ? popUser.category_name_ar : popUser.category_name_en}}</p>
+                <p ng-click="navActivity(popUser.latitude,popUser.longitude)" class="address last number">{{(Language.isRtl()) ? popUser.address_ar : popUser.address_en}}, {{(Language.isRtl()) ? popUser.city_name_ar : popUser.city_name_en}}</p> 
+                <div ng-click="navActivity(popUser.latitude,popUser.longitude)" class="item-action row nopads" ng-class="{'rtl': Language.isRtl(), 'ltr': !Language.isRtl()}"> 
+				
+				  <button class="button button-clear text-uppercase" ng-click="showProfile(popUser.user_id)">
+                      <img src="images/ic-info.svg" width="12"/>
+                      {{'details' | translate}}
+                  </button>
+                  
+                  <button class="button button-clear text-uppercase" ng-if="popUser.views > 0">
+                      <i class="ion-eye"></i>
+                      {{popUser.views}}
+                  </button>
+
+				  <button class="button button-clear text-uppercase">
+                      <i class="ion-location"></i>
+                      {{popUser.distance | number:1}} Km
+                  </button>
+                  
+                  <button class="button button-clear text-uppercase text-offers" ng-if="data.offers > 0">
+                      <i class="ion-pricetag"></i>
+                      {{data.offers}}
+                  </button>
+
+                </div>
+				<div class="close-popup-info" ng-class="{'rtl': Language.isRtl(), 'ltr': !Language.isRtl()}" ng-click="closePopupInfo()"><i class="ion-close-circled"></i></div>
+                <div class="featured" ng-class="{'rtl': Language.isRtl(), 'ltr': !Language.isRtl()}" ng-if="popUser.is_featured == 1">{{'featured' | translate}}</div>
+            </ion-item> 
+  	</div>
+
+	<div ng-include src="'templates/footers/emergency.html'"></div>
+	
+	<div class="offer-popup" ng-if="showOfferPopup">
+	
+		<button class="button button-clear offer-popup-close" ng-click="closePopup()">
+			<i class="ion-close-circled"></i>
+		</button>
+    		
+  		<ion-item ng-repeat="data in offers track by $index" class="item" ng-class="{'item-thumbnail-left ltr' : !Language.isRtl(), 'item-thumbnail-right rtl' : Language.isRtl()}" dir="{{(Language.isRtl()) ? 'rtl' : 'ltr'}}">
+	
+	    	<img src="{{baseUrl}}uploads/subscribers/wall/{{data.image}}" width="80" class="img-bordered" ng-click="showOffer(data.offer_id)">
+	        <h2 ng-click="showOffer(data.offer_id)">{{(Language.isRtl()) ? data.offer_title_ar : data.offer_title_en}}</h2>
+	        <p ng-click="showOffer(data.offer_id)" class="address last">{{(Language.isRtl()) ? data.title_ar : data.title_en}}</p> 
+	        <div class="item-action row nopads" ng-class="{'rtl': Language.isRtl(), 'ltr': !Language.isRtl()}"> 
+					
+				<button class="button button-clear text-uppercase" ng-click="getOffer(data.user_id, data.offer_id)">
+	              	<img src="images/ic-info.svg" width="12"/>
+	               	{{'get_it' | translate}}
+	            </button>
+	                  
+	            <button class="button button-clear text-uppercase text-offers" ng-click="callOffer(data.phone)">
+	                <i class="ion-android-call"></i>
+	                {{'call' | translate}}
+	            </button>
+	
+				<button class="button button-clear text-uppercase">
+	                <i class="ion-location"></i>
+	                {{data.distance | number:1}} Km
+	            </button>
+ 
+	        </div> 
+                
+         </ion-item> 
+    	
+  	</div>
+
+</ion-view>

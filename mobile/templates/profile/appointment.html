@@ -1,0 +1,79 @@
+<ion-view view-title="" cache-view="true" hide-back-button="true">
+
+	<ion-nav-title>{{(Language.isRtl()) ? user.title_ar : user.title_en}}</ion-nav-title>
+	
+	<ion-nav-buttons side="left">
+		
+		<button class="button button-icon button-clear back-button" ng-click="profileNav()">
+          <i class="ion-android-arrow-back"></i>
+        </button>
+        
+	</ion-nav-buttons>
+	
+	<ion-nav-buttons side="right">
+		
+		<button class="button button-icon button-clear" menu-toggle="right">
+          <img src="images/menu.svg" width="20" />
+        </button>
+	</ion-nav-buttons>
+
+	<ion-content class="form has-header has-footer">
+
+		<p class="h2 text-center block text-white" dir="{{(Language.isRtl()) ? 'rtl' : 'ltr'}}"><strong>{{'fill_in' | translate}}</strong></p>
+		<div class="clearfix"></div>
+
+		<form role="form" class="frm-advertise" name="frmSignup" ng-submit="appointment(frmSignup.$valid)" novalidate dir="{{(Language.isRtl()) ? 'rtl' : 'ltr'}}">
+
+			<label class="item item-input form-group">
+			    <input type="text" id="name" name="name" ng-model="userForm.name" placeholder="{{'your_name' | translate}}" class="form-control" required />
+			    <div class="error-container last-error-container" ng-show="frmSignup.name.$error && frmSignup.$submitted" ng-messages="frmSignup.name.$error">
+	                <div ng-messages-include="templates/error-list.html"></div> 
+	            </div>
+			</label>
+
+			<label class="item item-input form-group">
+			    <input type="email" placeholder="{{'email_address' | translate}}" class="form-control" id="email" name="email" ng-model="userForm.email" required/>
+			    <div class="error-container last-error-container" ng-show="frmSignup.email.$error && frmSignup.$submitted" ng-messages="frmSignup.email.$error">
+	                <div ng-messages-include="templates/error-list.html"></div> 
+	            </div>
+			</label>
+
+			<label class="item item-input form-group">
+			    <input type="text" placeholder="{{'contact_no' | translate}}" class="form-control" id="contact" name="contact" required ng-model="userForm.contact"/>
+			    <div class="error-container last-error-container" ng-show="frmSignup.contact.$error && frmSignup.$submitted" ng-messages="frmSignup.contact.$error">
+	                <div ng-messages-include="templates/error-list.html"></div> 
+	            </div>
+			</label> 
+			
+			<label class="item item-input form-group"> 
+				<textarea placeholder="{{'message' | translate}}" class="form-control form-control-message" id="message" name="message" required ng-model="userForm.message"></textarea>
+			    <div class="error-container last-error-container" ng-show="frmSignup.message.$error && frmSignup.$submitted" ng-messages="frmSignup.message.$error">
+	                <div ng-messages-include="templates/error-list.html"></div> 
+	            </div>
+			</label>
+
+			<label class="form-group form-voucher block" ng-click="toggleVoucher()">
+				<i ng-class="{'ion-android-checkbox-outline': (userForm.voucher == 1), 'ion-android-checkbox-outline-blank': (userForm.voucher == 0)}"></i>
+			    <span class="text-white">{{'have_voucher' | translate}}</span>
+			    <input type="hidden" value="1" name="voucher" id="voucher" ng-model="userForm.voucher" required/>
+			</label>
+
+			<label class="item item-input form-group">
+			    <input type="text" placeholder="{{'enter_voucher_code' | translate}}" class="form-control" id="voucher_code" name="voucher_code" ng-model="userForm.voucher_code"/>
+			</label>
+
+			<div class="clearfix"></div>
+
+			<div class="block text-center form-action">
+				<button type="submit" class="text-uppercase button button-primary">
+					{{'send_request' | translate}}
+				</button>
+			</div>
+
+		</form>
+
+	</ion-content>
+
+	<div ng-include src="'templates/footers/appointment.html'"></div>
+
+</ion-view>

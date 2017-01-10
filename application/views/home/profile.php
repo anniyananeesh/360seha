@@ -98,7 +98,7 @@
       </ul>
       <?php endif;?>
 
-      <button class="Profile_card_button sendMessage" id="sendMessage"><?php echo lang('auto.send_message')?></button>
+      <button class="Profile_card_button sendMessage" id="sendMessage"><?php echo lang('auto.ask_doctor')?></button>
       <button id="toggle" class="about">MORE ABOUT <span class="caret"></span></button>
 
       <script type="text/javascript">

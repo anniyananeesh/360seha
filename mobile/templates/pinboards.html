@@ -1,0 +1,74 @@
+<ion-view view-title="{{'pinboards' | translate}}" cache-view="true">
+ 	
+ 	
+ 	<ion-nav-buttons side="right">
+		
+		<button class="button button-icon button-clear" menu-toggle="right">
+          <img src="images/menu.svg" width="20" />
+        </button>
+	</ion-nav-buttons>
+	
+	<ion-content class="has-footer" dir="{{(Language.isRtl()) ? 'rtl' : 'ltr'}}">
+ 
+			<div class="list card" ng-repeat="data in pinboards track by $index" dir="{{(Language.isRtl()) ? 'rtl' : 'ltr'}}">
+  
+			  <a href="#/app/profile/{{data.user_id}}" class="item item-avatar">
+			    <img src="{{baseUrl}}uploads/subscribers/profile/{{data.logo}}">
+			    <h2>{{(Language.isRtl()) ? data.title_ar : data.title_en}}</h2>
+			    <p>{{data.created_on}}</p>
+			  </a>
+
+			  <div class="item item-body nopads">
+
+			    <a href="#/app/pinboard_details/{{data.wall_id}}" ng-if="data.image != null">
+			    	<img class="full-image" src="{{baseUrl}}uploads/subscribers/wall/{{data.image}}"/>
+			    </a>
+				
+				<div class="card-description nomargins offer-period well" ng-if="data.offer_starts != '' && data.offer_starts != null">
+				
+					<div ng-class="{'pull-left' : !Language.isRtl(), 'pull-right' : Language.isRtl()}">
+						<i class="ion-calendar"></i> {{data.offer_starts}} {{(data.offer_ends != '' && data.offer_ends != null) ? ' - ' + data.offer_ends : ''}}
+					</div>
+					
+					<div ng-if="data.voucher_code != null" ng-class="{'pull-right' : !Language.isRtl(), 'pull-left' : Language.isRtl()}">
+						<strong>{{'code' | translate}} :</strong> {{data.voucher_code}}
+					</div>
+					
+					<div class="clearfix"></div>
+					
+				</div> 
+
+			    <div class="well block card-footer" ng-class="{'ltr' : !Language.isRtl(), 'rtl' : Language.isRtl()}">
+			      
+			      <a ng-click="getOffer(data.user_id, data.wall_id)" class="subdued text-uppercase text-blue">
+			      	<i class="ion-happy-outline"></i>
+			      	{{'get_it' | translate}}
+			      </a>
+
+			      <a ng-click="locate(data.latitude, data.longitude)" class="subdued text-uppercase">
+			      	<i class="ion-location"></i>
+			      	{{'locate' | translate}}
+			      </a>
+
+			      <a ng-click="call(data.phone)" class="subdued text-uppercase">
+			      	<i class="ion-android-call"></i>
+			      	{{'call' | translate}}
+			      </a>
+
+			      <a ng-click="share(data.title_en, data.description_en, data.image)" class="subdued text-uppercase">
+			      	<i class="ion-share"></i>
+			      	{{'share' | translate}}
+			      </a>
+
+			    </div>
+			  </div>
+
+			</div>   
+
+		<ion-infinite-scroll immediate-check="false"  on-infinite="loadData()" ng-if="!moreData"></ion-infinite-scroll>
+
+	</ion-content>
+
+	<div ng-include src="'templates/footers/home.html'"></div>
+
+</ion-view>

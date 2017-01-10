@@ -1,0 +1,33 @@
+<ion-view view-title="{{'notifications' | translate}}" cache-view="true">
+ 	
+ 	<ion-nav-buttons side="right">
+		
+		<button class="button button-icon button-clear" menu-toggle="right">
+          <img src="images/menu.svg" width="20" />
+        </button>
+	</ion-nav-buttons>
+	
+	<ion-content class="content">
+	
+		<ion-refresher
+		    pulling-text="More Notifications"
+		    on-refresh="doRefresh()"
+		    spinner="ios-small">
+		</ion-refresher>
+		
+		<ion-list>
+		
+			<ion-item ng-class-even="'bg-striped'" ng-class-odd="''" class="notification-item item-text-wrap" ng-repeat="notification in notifications | orderBy:'job_id':true" ng-if="showNote(notification.not_lang)" dir="{{(Language.isRtl())? 'rtl':'ltr'}}">
+				<h2 class="notification-title">{{notification.title}}</h2>
+	            <p class="notification-d ate">{{notification.send_on}}</p>
+				<p class="notification-message">{{notification.message}}</p>
+				<input type="hidden" class="notification_id" value="{{notification.job_id}}"/>
+			</ion-item> 
+			
+		</ion-list>
+		
+		<ion-infinite-scroll immediate-check="false"  on-infinite="loadMoreData()" ng-if="!moredata"></ion-infinite-scroll>
+		
+	</ion-content>
+	
+</ion-view>		

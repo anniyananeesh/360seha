@@ -1,0 +1,66 @@
+<ion-view view-title="{{'advertise_with_us' | translate}}" cache-view="true" hide-back-button="true">
+  	
+  	<ion-nav-buttons side="right">
+		
+		<button class="button button-icon button-clear" menu-toggle="right">
+          <img src="images/menu.svg" width="20" />
+        </button>
+	</ion-nav-buttons>
+	
+	<ion-content class="form">
+
+		<p class="h2 text-center block text-white"></p>
+		<div class="clearfix"></div>
+
+		<form role="form" class="frm-advertise" name="frmSignup" ng-submit="sendRequest(frmSignup.$valid)" novalidate dir="{{(Language.isRtl()) ? 'rtl' : 'ltr'}}">
+
+			<label class="item item-input form-group">
+			    <input type="text" placeholder="{{'your_name' | translate}}" class="form-control" id="name" name="name" ng-model="user.name" required />
+			    <div class="error-container last-error-container" ng-show="frmSignup.name.$error && frmSignup.$submitted" ng-messages="frmSignup.name.$error">
+	                <div ng-messages-include="templates/error-list.html"></div> 
+	            </div>
+			</label>
+
+			<label class="item item-input form-group">
+			    <input type="email" placeholder="{{'email_id' | translate}}" class="form-control" id="email" name="email" ng-model="user.email" required />
+			    <div class="error-container last-error-container" ng-show="frmSignup.email.$error && frmSignup.$submitted" ng-messages="frmSignup.email.$error">
+	                <div ng-messages-include="templates/error-list.html"></div> 
+	            </div>
+			</label>
+
+			<label class="item item-input form-group">
+			    <input type="tel" placeholder="{{'contact_no' | translate}}" class="form-control" name="phone" id="phone" ng-model="user.phone" required />
+			    <div class="error-container last-error-container" ng-show="frmSignup.phone.$error && frmSignup.$submitted" ng-messages="frmSignup.phone.$error">
+	                <div ng-messages-include="templates/error-list.html"></div> 
+	            </div>
+			</label>
+
+			<label class="item item-input form-group">
+			    <input type="text" placeholder="{{'company_name' | translate}}" class="form-control" id="company_name" name="company_name" ng-model="user.company_name">
+			    <div class="error-container last-error-container" ng-show="frmSignup.company_name.$error && frmSignup.$submitted" ng-messages="frmSignup.company_name.$error">
+	                <div ng-messages-include="templates/error-list.html"></div> 
+	            </div>
+			</label>
+
+			<label class="item item-input form-group">
+			    <textarea placeholder="{{'message' | translate}}" class="form-control" id="message" name="message" ng-model="user.message"></textarea>
+			    <div class="error-container last-error-container" ng-show="frmSignup.message.$error && frmSignup.$submitted" ng-messages="frmSignup.message.$error">
+	                <div ng-messages-include="templates/error-list.html"></div> 
+	            </div>
+			</label>
+
+			<div class="clearfix"></div>
+
+			<div class="block text-center form-action">
+				<button type="submit" class="text-uppercase button button-primary">
+					{{'send_request' | translate}}
+				</button>
+			</div>
+
+		</form>
+
+	</ion-content>
+
+	<div ng-include src="'templates/footers/home.html'"></div>
+
+</ion-view>

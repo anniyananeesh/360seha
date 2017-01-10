@@ -1,0 +1,64 @@
+<ion-modal-view cache-view="true">
+ 	
+ 	<ion-header-bar class="main-header">
+        <div class="title">{{'ask_the_doctor' | translate}}</div>  
+
+        <div class="buttons buttons-right">
+            <span class="right-buttons">
+                <button class="button button-clear button-search" ng-click="closeModal()">
+			        <i class="ion-close-round"></i>
+			    </button> 
+            </span>
+        </div>      
+
+    </ion-header-bar> 
+	
+	<ion-content class="has-header review-body" dir="{{(Language.isRtl()) ? 'rtl' : 'ltr'}}">
+
+		 <form class="frm-advertise search-filter" name="frmListed" id="frmListed" ng-submit="sendMessage(frmListed.$valid)" novalidate dir="{{(Language.isRtl()) ? 'rtl' : 'ltr'}}">
+		 		
+		 		<label class="form-group">
+
+					<span class="label-control">{{'your_name' | translate}}</span>
+				    <input type="text" class="form-control" name="name" id="name" ng-model="ask.name"/>
+		            
+				</label>
+				
+				<label class="form-group">
+
+					<span class="label-control">{{'email_id' | translate}}</span>
+				    <input type="email" class="form-control" name="email" id="email" ng-model="ask.email" required/>
+		            
+				</label>
+				
+				<label class="form-group">
+
+					<span class="label-control">{{'select_your_department' | translate}}</span> 
+				    <select class="form-control" ng-model="ask.department" name="department" id="department" required>
+				    	<option ng-repeat="data in departments track by $index" ng-value="data.title_en">
+				    		{{(Language.isRtl()) ? data.title_ar : data.title_en}}
+				    	</option>
+				    </select>
+		            
+				</label> 
+ 
+				<label class="form-group">
+	 				<span class="label-control">{{'question' | translate}}</span>
+				    <textarea class="form-control" name="message" id="message" ng-model="ask.message"></textarea>
+				</label> 
+		 		
+		 		<div class="clearfix"></div>  
+
+				<div class="block text-center">
+					<button type="submit" class="text-uppercase button button-primary button-block">
+						{{'submit' | translate}}
+					</button>
+				</div>
+	
+				<div class="clearfix"></div>
+			
+		 </form>
+
+	</ion-content>
+
+</ion-modal-view>

@@ -1,0 +1,28 @@
+<ion-view view-title="{{'pinboard_details' | translate}}" cache-view="true">
+
+	<ion-nav-buttons side="right"></ion-nav-buttons>
+
+	<ion-content class="has-footer-sm bg-gray" dir="{{(Language.isRtl()) ? 'rtl' : 'ltr'}}">
+
+		<a href="#/app/profile/{{pinboard.user_id}}" class="item card-item item-avatar">
+		    <img src="{{baseUrl}}uploads/subscribers/profile/{{pinboard.logo}}">
+			<h2>{{(Language.isRtl()) ? pinboard.title_ar : pinboard.title_en}}</h2>
+			<p>{{pinboard.created_on}}</p>
+		</a>
+
+		<img class="full-image" src="{{baseUrl}}uploads/subscribers/wall/{{pinboard.image}}" />
+		
+		<div class="card-description nomargins offer-period well" ng-if="pinboard.offer_starts != '' && pinboard.offer_starts != null">
+			<i class="ion-calendar"></i> {{pinboard.offer_starts}} {{(pinboard.offer_ends != '' && pinboard.offer_ends != null) ? ' - ' + pinboard.offer_ends : ''}}
+		</div>
+				
+		<div class="card-description well nomargins" ng-bind-html="pinboard.description_en" ng-if="!Language.isRtl()"></div>
+		<div class="card-description well nomargins" ng-bind-html="pinboard.description_ar" ng-if="Language.isRtl()"></div>
+
+		<div class="clearfix"></div>
+
+	</ion-content>
+
+	<div ng-include src="'templates/footers/pinboard.html'"></div>
+
+</ion-view>

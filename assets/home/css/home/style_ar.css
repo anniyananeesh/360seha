@@ -529,7 +529,7 @@ a{
 /*	width: 250px;
 */	position: absolute;
 	z-index:1;
-	top: 150px;
+  top: 150px;
 	left: 20px;
 	background-color:transparent;
 	-webkit-box-shadow: 7px 2px 25px -3px rgba(0,0,0,0.34);
@@ -543,7 +543,8 @@ a{
   width:100%;
   margin-top:20px;
   font-weight:600;
-  padding:15px 30px 15px 55px;
+  /*padding:15px 30px 15px 55px;*/
+  padding: 15px 30px 15px 49px;
   font-size:16px;
   box-shadow:none;
   border:0px;
@@ -564,4 +565,12 @@ a{
   background-color: #86c33f !important;
   color:#fff;
   text-decoration:none;
+}
+
+.info-close {
+  display: block;
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  font-size: 24px;
 }

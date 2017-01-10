@@ -599,24 +599,24 @@ button.active {
 	background-color:#fff;
 	padding:20px;
 	margin:20px 0px 10px 0px;
-	   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+	/*box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);*/
 }
 
 .form-control {
-    border: 1px solid #fff  !important;  /*Removes border*/
-		-webkit-appearance: none;  /*Removes default chrome and safari style*/
-		-moz-appearance: none; /* Removes Default Firefox style*/
-    width: 100%;
-	float:left;
-	margin-top:7px;
-	box-shadow:none;
-	padding:4px;
-	color:#000;
-	font-size:16px;
-	outline:none;
-    overflow: hidden;
-	cursor:pointer;
-    background: #008eca url(../img/drop.png) no-repeat 98% 50%;
+	border: 1px solid #008eca !important;
+	    -webkit-appearance: none;
+	    -moz-appearance: none;
+	    width: 100%;
+	    float: left;
+	    margin-top: 7px;
+	    box-shadow: none;
+	    padding: 4px;
+	    color: #000;
+	    font-size: 16px;
+	    outline: none;
+	    overflow: hidden;
+	    cursor: pointer;
+	    background: #fff url(../img/drop.png) no-repeat 98% 50%;
 }
 .form-control option{
 	background-color:#fff;

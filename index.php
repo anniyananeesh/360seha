@@ -1,6 +1,23 @@
 <?php
 require './vendor/autoload.php';
 
+// These lines are mandatory.
+require_once './application/libraries/Mobile_Detect.php';
+$detect = new Mobile_Detect();
+
+/*if($detect->isAndroidOS()){
+ 		header("Location:https://play.google.com/store/apps/details?id=com.dgweb.seha");
+}
+
+if( $detect->isiOS() ){
+		header("Location:https://itunes.apple.com/fr/app/360seha/id1018589032?l=en&mt=8");
+}*/
+
+// Any mobile device (phones or tablets).
+if ( $detect->isMobile() ) {
+   header("Location:http://m.360seha.com/");
+}
+
 /*$subdomain_arr = explode('.', $_SERVER['HTTP_HOST'], 2); //creates the various parts
 $subdomain_name = $subdomain_arr[0]; //assigns the first part
 if(!in_array($subdomain_name, array('emirates','kuwait','bahrain','saudi-arabia','oman','qatar')))

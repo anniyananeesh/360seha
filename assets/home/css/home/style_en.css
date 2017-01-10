@@ -514,12 +514,13 @@ a{
 }
 
 .btn-list {
-  background: #2566b5 url(../../img/list_icon.png) 10px 15px no-repeat;
+  background: #2566b5 url(../../img/home/list_icon.png) 10px 15px no-repeat;
   color: #fff;
   width:100%;
   margin-top:20px;
   font-weight:600;
-  padding:15px 30px 15px 55px;
+  /*padding:15px 30px 15px 55px;*/
+	padding: 15px 30px 15px 49px;
   font-size:16px;
   box-shadow:none;
   border:0px;
@@ -540,4 +541,13 @@ a{
   background-color: #86c33f !important;
   color:#fff;
   text-decoration:none;
+}
+
+
+.info-close {
+  display: block;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-size: 24px;
 }

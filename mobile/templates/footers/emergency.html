@@ -1,0 +1,13 @@
+<ion-footer-bar class="bar-footer app-footer" dir="{{(Language.isRtl()) ? 'rtl' : 'ltr'}}">
+
+	<button class="button-clear text-uppercase" ng-class="{'active': (view == 'list')}" ng-click="changeView('list')">
+		<i class="ion-navicon-round"></i>
+		{{'list_view' | translate}}
+	</button>
+
+	<button class="button-clear text-uppercase" ng-class="{'active': (view == 'map')}" ng-click="changeView('map')">
+		<i class="ion-location"></i>
+		{{'map_view' | translate}}
+	</button>
+
+</ion-footer-bar>

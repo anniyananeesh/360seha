@@ -1,0 +1,38 @@
+<ion-view view-title="{{'about_us' | translate}}" cache-view="true">
+
+	<ion-nav-buttons side="right">
+		
+		<button class="button button-icon button-clear" menu-toggle="right">
+          <img src="images/menu.svg" width="20" />
+        </button>
+	</ion-nav-buttons>
+
+	<ion-content class="has-footer bg-gray" dir="{{(Language.isRtl()) ? 'rtl' : 'ltr'}}">
+ 
+		<div class="card-description well nomargins text-left" ng-if="!Language.isRtl()" dir="ltr">
+			<p>360seha is an innovative and smart health directory that makes a link between health providers and patient easily . We offer the fastest way to find health providers that the users actually search for. </p>
+			<p>Find health providers around you; pick your service you want  and make appointment in an easy way.</p>
+			<p>360seha was invented to be your assistant in health world . We add some special educational features like health news and tips that helps the patients to stay updated about the latest happenings in the world of health and fitness.</p>
+			<p></p>
+			<p>360seha</p>
+			<p>Find health around you.</p>
+		</div>
+		
+		<div class="card-description well nomargins text-right" ng-if="Language.isRtl()" dir="rtl">
+			<p>360صحة هو دليل طبي ولكن بطريقة جديدة ومميزة حيث سعينا من خلال هذا الدليل لجعل التواصل بين مزودي الخدمات الصحية والمرضى بشكل ابسط واسهل حيث وفرنا في هذا الدليل اليات بحث ميسرة لتصل الى حاجتك ومبتغاك </p>
+			<p>تعرف على مزودي الخدمات الصحية من حولك ومايقدمونه من خدمات وعروض ومميزات احجز موعدك بكل بساطة وسهولة</p>
+			<p>لقد اوجد ٣٦٠ صحة ليكون معينك ودليلك الى عالم الصحة من حولك</p>
+			<p>كما اضفنا للدليل بعض الاضافات المميزة التثقيفية مثل النصائح الصحية واخبار الصحة ليبقى المريض دائماً على اطلاع </p>
+			
+			<p></p>
+			<p>360 صحة</p>
+			<p>الصحة من حولك</p>
+		</div>
+
+		<div class="clearfix"></div> 
+
+	</ion-content>
+
+	<div ng-include src="'templates/footers/home.html'"></div>
+
+</ion-view>

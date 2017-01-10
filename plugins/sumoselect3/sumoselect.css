@@ -20,16 +20,16 @@
 
 .SumoSelect { display: inline-block; position: relative;outline:none; width: 100%;}
 .SumoSelect:focus > .CaptionCont,.SumoSelect:hover > .CaptionCont, .SumoSelect.open > .CaptionCont {box-shadow: 0 0 2px #7799D0;border-color: #7799D0;}
-    .SumoSelect > .CaptionCont {     position: relative;
-    border: 1px solid #ffffff;
+    .SumoSelect > .CaptionCont {         position: relative;
+    border: 1px solid #008eca;
     min-height: 14px;
-    background: #008eca url(../../assets/home/img/drop.png) no-repeat 98% 50%;
+    background: #fff url(../../assets/home/img/drop.png) no-repeat 98% 50%;
     border-radius: 2px;
     margin: 0;
     width: 100%;}
         .SumoSelect > .CaptionCont > span { display: block; padding-right: 30px; text-overflow: ellipsis; color: #fff; white-space: nowrap; overflow: hidden;cursor:default;}
             /*placeholder style*/
-            .SumoSelect > .CaptionCont > span.placeholder { color: #fff; font-style: italic; }
+            .SumoSelect > .CaptionCont > span.placeholder { color: #000; font-style: italic; }
 
         .SumoSelect > .CaptionCont > label { position: absolute; top: 0; right: 0; bottom: 0; width: 30px;}
             .SumoSelect > .CaptionCont > label > i { background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAANCAYAAABy6+R8AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3wMdBhAJ/fwnjwAAAGFJREFUKM9jYBh+gBFKuzEwMKQwMDB8xaOWlYGB4T4DA0MrsuapDAwM//HgNwwMDDbYTJuGQ8MHBgYGJ1xOYGNgYJiBpuEpAwODHSF/siDZ+ISBgcGClEDqZ2Bg8B6CkQsAPRga0cpRtDEAAAAASUVORK5CYII=');
@@ -104,4 +104,3 @@
 
      /*styling for optgroups*/
     .SumoSelect > .optWrapper > .options li.optGroup { padding-left: 5px; text-decoration: underline; }
-

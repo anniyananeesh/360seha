@@ -1,0 +1,136 @@
+<ion-view view-title="" cache-view="false" hide-back-button="true" dir="{{(Language.isRtl()) ? 'rtl' : 'ltr'}}">
+
+	<ion-nav-buttons side="right">
+
+		<button class="button button-icon button-clear" menu-toggle="right">
+          <img src="images/menu.svg" width="20" />
+        </button>
+
+	</ion-nav-buttons>
+
+	<ion-nav-buttons side="left">
+
+        <button class="button button-clear" id="btn-search">
+       		<img src="images/search.svg" width="20" />
+        </button>
+
+    </ion-nav-buttons>
+
+    <ion-nav-title>
+      <img src="images/logo.svg" width="100" />
+    </ion-nav-title>
+
+    <div class="clearfix"></div>
+
+    <div class="search-home text-center block">
+
+    	<p class="h5 font-thin text-primary"><strong>{{'find_book_health_centers' | translate}}</strong> {{'health_centers_around' | translate}}</p>
+    	<div class="clearfix"></div>
+
+    	<form class="frm-home block" name="frmSearchHome" id="frmSearchHome">
+
+       		<label class="item item-sm item-input form-group">
+
+			    <input type="text" placeholder="{{'enter_your_location' | translate}}" name="location" id="location_spin" ng-focus="spinIcon()" ng-blur="spinIconOut()" ng-model="user.location" ng-keyup='typing = true'/>
+			    <i class="ion-location" id="location_spin_i"></i>
+
+			</label>
+
+			<div class="clearfix"></div>
+
+			<div class="auto-suggest" ng-if="user.location != '' && typing" ng-class="{'ltr': !Language.isRtl(), 'rtl': Language.isRtl()}">
+
+			 	<ion-content class="no-header">
+
+			    	<ion-list>
+
+			    		<ion-item ng-repeat="data in citySuggest | filter:user.location" ng-click="choseLocation(((Language.isRtl()) ? data.name_ar : data.name_en))">
+			    			{{(Language.isRtl()) ? data.name_ar : data.name_en }}
+			    		</ion-item>
+
+			    	</ion-list>
+
+				</ion-content>
+
+			</div>
+
+  			<div class="clearfix"></div>
+
+  			<label class="item item-sm item-input form-group" ng-click="showServices()">
+  			    <input type="text" placeholder="{{'select_your_services' | translate}}" name="service" id="service" ng-model="user.service" readonly/>
+  			    <i class="ion-ios-arrow-down"></i>
+  			</label>
+
+        	<input type="hidden" name="service_id" id="service_id" ng-model="user.service_id" />
+
+        	<div class="clearfix"></div>
+
+    	</form>
+
+    	<div class="clearfix"></div>
+
+    </div>
+
+	<ion-content class="has-search-header home-list has-footer has-map-header" dir="{{(Language.isRtl()) ? 'rtl' : 'ltr'}}" scroll="false">
+
+ 		<ng-map ng-if="curr_lat != 0 && curr_long  != 0"
+	    		center="[{{curr_lat}},{{curr_long}}]"
+	    		zoom="15"
+      		 	class="map_canvas_home"
+      		 	disable-default-u-i="true"
+	         	data-tap-disabled="true"
+	         	map-type-id="MapTypeId.ROADMAP"
+	         	styles='[{"featureType":"landscape.natural.landcover","elementType":"all","stylers":[{"visibility":"on"}]},{"featureType":"landscape.natural.terrain","elementType":"all","stylers":[{"visibility":"on"}]},{"featureType":"poi","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"poi.attraction","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"poi.attraction","elementType":"labels.text","stylers":[{"visibility":"off"}]},{"featureType":"poi.business","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"poi.business","elementType":"labels.text","stylers":[{"visibility":"off"}]},{"featureType":"poi.park","elementType":"all","stylers":[{"visibility":"on"}]},{"featureType":"poi.sports_complex","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"poi.sports_complex","elementType":"labels.text","stylers":[{"visibility":"off"}]}]'>
+
+	         <custom-marker ng-repeat="data in users track by $index" position="{{data.latitude}}, {{data.longitude}}"
+		          on-click="popUserInfo(event, data.user_id, data)" animation="Animation.DROP">
+		    	<div ng-class="{ 'normal-marker' : (data.is_featured != 1), 'emergency-marker' : (data.emergency == 1), 'featured-marker' : (data.is_featured == 1)}"></div>
+		 	 </custom-marker>
+
+	         <marker ng-if="curr_lat != 0 && curr_long  != 0" position="{{curr_lat}},{{curr_long}}" animation="Animation.DROP" centered="true"></marker>
+
+		</ng-map>
+
+	</ion-content>
+
+    <div class="info-window" ng-if="popUser != null">
+
+	      <ion-item class="item" ng-class="{'featured': (popUsrAdData.is_featured == 1), 'item-thumbnail-left' : (!Language.isRtl() && popUser.logo != null), 'item-thumbnail-right' : (Language.isRtl() && popUser.logo != null), 'ltr' : !Language.isRtl(), 'rtl' : Language.isRtl()}">
+
+	                <img ng-click="showProfile(popUser.user_id)" src="{{baseUrl}}uploads/subscribers/profile/{{popUser.logo}}" ng-if="popUser.logo != null" width="80" class="img-bordered" ng-class="{'pull-left' :!Language.isRtl(), 'pull-right' :Language.isRtl()}">
+	                <div class="item-content" ng-click="showProfile(popUser.user_id)">
+
+	                	<h2>{{(Language.isRtl()) ? popUser.title_ar : popUser.title_en}} <span class="twnty_fourhrs" ng-if="popUsrAdData.emergency == 1">24hrs</span></h2>
+	                	<p class=" category">{{(Language.isRtl()) ? popUser.category_name_ar : popUser.category_name_en}}</p>
+		                <p class="address last number">{{(Language.isRtl()) ? popUser.address_ar : popUser.address_en}}, {{(Language.isRtl()) ? popUser.city_name_ar : popUser.city_name_en}}</p>
+		                <div class="item-action row nopads" ng-class="{'rtl': Language.isRtl(), 'ltr': !Language.isRtl()}">
+
+						  <button class="button button-clear text-uppercase" ng-click="showProfile(popUser.user_id)">
+		                      <img src="images/ic-info.svg" width="12"/>
+		                      {{'details' | translate}}
+		                  </button>
+
+		                  <button class="button button-clear text-uppercase" ng-if="popUser.views > 0">
+		                      <i class="ion-eye"></i>
+		                      {{popUser.views}}
+		                  </button>
+
+						  <button class="button button-clear text-uppercase">
+		                      <i class="ion-location"></i>
+		                      {{popUser.distance | number:1}} Km
+		                  </button>
+
+		                </div>
+
+	                </div>
+
+	                <div class="close-popup-info" ng-class="{'rtl': Language.isRtl(), 'ltr': !Language.isRtl()}" ng-click="closePopup()"><i class="ion-close-circled"></i></div>
+
+	                <div class="featured" ng-class="{'rtl': Language.isRtl(), 'ltr': !Language.isRtl()}" ng-if="popUser.is_featured == 1">{{'featured' | translate}}</div>
+
+	            </ion-item>
+    </div>
+
+	<div ng-include src="'templates/footers/home.html'"></div>
+
+</ion-view>

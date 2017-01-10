@@ -1,0 +1,48 @@
+<ion-view view-title="{{'latest_articles' | translate}}" cache-view="true">
+
+	<ion-nav-buttons side="right">
+		
+		<button class="button button-icon button-clear" menu-toggle="right">
+          <img src="images/menu.svg" width="20" />
+        </button>
+	</ion-nav-buttons>
+ 
+	<ion-content class="has-footer" dir="{{(Language.isRtl()) ? 'rtl' : 'ltr'}}">
+
+			<div class="list card" ng-repeat="data in articles track by $index" ng-if="Language.getLang() == data.lang || data.lang == 'Both'">
+
+			  <a class="item card-item item-text-wrap" href="#/app/article_details/{{data.id}}">
+			    <h2>{{(Language.isRtl()) ? data.title_ar : data.title_en}}</h2>
+			    <p>{{data.created_on}}</p>
+			  </a>
+
+			  <div class="item item-body nopads">
+
+			    <a href="#/app/article_details/{{data.id}}">
+			    	<img class="full-image" src="{{baseUrl}}uploads/articles/{{data.image}}" ng-if="data.image != null"/>
+			    </a>
+
+			   	<div class="card-description well nomargins">{{(Language.isRtl()) ? data.description_ar : data.description_en | htmlToPlaintext | limitTo : 120}} ...</div>
+ 			    
+			    <div class="well block card-footer" ng-class="{'ltr' : !Language.isRtl(), 'rtl' : Language.isRtl()}">
+			      <a href="#/app/article_details/{{data.id}}" class="subdued text-uppercase text-blue">
+			      	<i class="ion-ios-book"></i>
+			      	{{'read_now' | translate}}
+			      </a>
+			      <a ng-click="share(data.title_en, data.title_ar, data.image)" class="subdued text-uppercase">
+			      	<i class="ion-android-share"></i>
+			      	{{'share' | translate}}
+			      </a>
+			    </div>
+			    
+			  </div>
+
+			</div>   
+
+		<ion-infinite-scroll immediate-check="false"  on-infinite="loadData()" ng-if="!modeData"></ion-infinite-scroll>
+
+	</ion-content>
+
+	<div ng-include src="'templates/footers/home.html'"></div>
+
+</ion-view>
